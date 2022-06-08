@@ -3,7 +3,10 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.res.ResourcesCompat;
+
 import android.Manifest;
+import android.animation.ObjectAnimator;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -35,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     public static String address = null;
     private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     public boolean activar;
+    private boolean first = true;
+    private float temperature;
     private BluetoothDevice device;
     public static Handler handler;
 
@@ -64,6 +69,20 @@ public class MainActivity extends AppCompatActivity {
                     String arduinoMsg = msg.obj.toString(); // Read message from Arduino
                     String[] valores = arduinoMsg.split("&");
                     binding.BTDInput.setText("Temperatura: "+valores[0]+" °C");
+                    binding.temperature.setText(valores[0]+" °C");
+
+                    if (!first){
+                        float current = Float.parseFloat(valores[0]);
+                        float diference = temperature - current;
+                        //Log.d("Data","Diferencia "+temperature+" - "+current+" = "+diference);
+                        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(binding.temperature,"translationY", diference*70f);
+                        objectAnimator.setDuration(400);
+                        objectAnimator.start();
+                    }else{
+                        temperature = Float.parseFloat(valores[0]);
+                        first = false;
+                    }
+
                     /*if (valores.length > 3) {
                         for (int i = 0; i < valores.length; i++)
                             Log.d("BT Input Values" + i, valores[i]);
@@ -140,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-            Toast.makeText(this,"Dispositivos encontrados: "+pairedDeveicesList.size(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(this,"Dispositivos encontrados: "+pairedDeveicesList.size(), Toast.LENGTH_LONG).show();
             //Iniciar el adaptador
             device = btAdapter.getRemoteDevice(address);
             comunicar();

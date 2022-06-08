@@ -3,7 +3,7 @@
     <gradient android:startColor="@color/soft_blue"
         android:endColor="@color/soft_red"
         android:angle="90"/>
-    <corners android:radius="36sp"/>
+    <corners android:radius="48sp"/>
     <size android:width="40sp"
         android:height="150sp"/>
     <stroke android:width="5sp"

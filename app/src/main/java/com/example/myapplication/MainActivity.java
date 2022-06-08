@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
@@ -27,6 +28,7 @@ import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
+
     private ActivityMainBinding binding;
     private BluetoothAdapter btAdapter = null;
     private BluetoothSocket btSocket = null;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);//Ignorar el modo oscuro
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -49,9 +52,10 @@ public class MainActivity extends AppCompatActivity {
             conectar();
         });
 
+        /*
         binding.sensores.setOnClickListener(view -> {
             comunicar();
-        });
+        });*/
 
         handler = new Handler(Looper.getMainLooper()) {
             @Override
@@ -59,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 if (msg.what == 2) {
                     String arduinoMsg = msg.obj.toString(); // Read message from Arduino
                     String[] valores = arduinoMsg.split("&");
-                    binding.BTDInput.setText("Temperatura: "+valores[0]);
+                    binding.BTDInput.setText("Temperatura: "+valores[0]+" °C");
                     /*if (valores.length > 3) {
                         for (int i = 0; i < valores.length; i++)
                             Log.d("BT Input Values" + i, valores[i]);
@@ -72,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
     }
+
 
     private void comunicar() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
@@ -131,13 +136,14 @@ public class MainActivity extends AppCompatActivity {
                     address = pairedDevice.getAddress();
                     binding.BTDName.setText("Nombre: " + pairedDevice.getName());
                     binding.BTDAddress.setText("Dirección: " + address);
-                    binding.sensores.setEnabled(true);
+                    //binding.sensores.setEnabled(true);
                 }
             }
 
             Toast.makeText(this,"Dispositivos encontrados: "+pairedDeveicesList.size(), Toast.LENGTH_LONG).show();
             //Iniciar el adaptador
             device = btAdapter.getRemoteDevice(address);
+            comunicar();
         }
     }
 

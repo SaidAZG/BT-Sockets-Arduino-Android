@@ -14,70 +14,89 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-black"
-        android:text="Proyecto Android"
-        android:textSize="32dp"
+        android:text="BT-S Android"
+        android:textSize="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/BTD_Data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="16dp"
-        android:text="Datos del dispositivo..."
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        android:fontFamily="casual"/>
-
-    <TextView
-        android:id="@+id/BTD_Name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nombre: "
-        app:layout_constraintStart_toStartOf="@+id/BTD_Data"
-        app:layout_constraintTop_toBottomOf="@id/BTD_Data"
-        android:fontFamily="casual"/>
-
-    <TextView
-        android:id="@+id/BTD_Address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dirección: "
-        app:layout_constraintStart_toStartOf="@+id/BTD_Name"
-        app:layout_constraintTop_toBottomOf="@+id/BTD_Name"
-        android:fontFamily="casual"/>
-
-    <TextView
-        android:id="@+id/BTD_Input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Datos recibidos: "
-        app:layout_constraintStart_toStartOf="@+id/BTD_Address"
-        app:layout_constraintTop_toBottomOf="@+id/BTD_Address"
-        android:fontFamily="casual" />
-
-
     <LinearLayout
-        android:layout_marginBottom="16dp"
+        android:padding="8sp"
+        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/conectar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:textSize="24sp"
+            android:layout_marginBottom="8sp"
+            android:id="@+id/BTD_Data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Datos del dispositivo..." />
+
+        <TextView
+            android:id="@+id/BTD_Name"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:text="Nombre: "/>
+
+        <TextView
+            android:id="@+id/BTD_Address"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:text="Dirección: "/>
+
+        <TextView
+            android:id="@+id/BTD_Input"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:text="Datos recibidos: "/>
+    </LinearLayout>
+
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/conectar"
+        android:text="Conectar"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/guinda"
+        android:layout_width="wrap_content"
+        android:drawableRight="@drawable/ic_baseline_bluetooth_24"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!--
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
-            android:layout_marginRight="16dp"
             android:id="@+id/conectar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:fontFamily="monospace"
             android:text="Conectar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:fontFamily="monospace"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:enabled="false"
@@ -91,6 +110,6 @@
             app:layout_constraintStart_toStartOf="parent"
             android:fontFamily="monospace"/>
     </LinearLayout>
-
+    -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

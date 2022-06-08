@@ -8,5 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="guinda">#7F1E57</color>
-    <color name="blue">#0F1CE0</color>
+    <color name="soft_red">#FF3426</color>
+    <color name="soft_blue">#006BFF</color>
 </resources>
